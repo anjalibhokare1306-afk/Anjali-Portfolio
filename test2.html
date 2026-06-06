@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Anjali | Portfolio</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0A0F2C;
+      --card: #111827;
+      --text: #E5E7EB;
+      --blue-light: #38bdf8;
+      --blue-hover: #0ea5e9;
+      --dark-text: #020617;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #11164a, var(--bg));
+      color: var(--text);
+      scroll-behavior: smooth;
+    }
+
+    header {
+      position: fixed;
+      width: 100%;
+      padding: 15px 8%;
+      background: rgba(2,6,23,0.85);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    header h1 {
+      font-size: 26px;
+      color: var(--blue-light);
+    }
+
+    nav a {
+      margin-left: 25px;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--blue-light);
+    }
+
+    section {
+      padding: 100px 8%;
+    }
+
+    /* HERO */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-container {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .hero-text h2 {
+      font-size: 45px;
+      margin-bottom: 15px;
+    }
+
+    .hero-text span {
+      color: var(--blue-light);
+    }
+
+    .hero-text p {
+      max-width: 550px;
+      line-height: 1.8;
+      opacity: 0.9;
+    }
+
+    .hero-photo img {
+      width: 250px;
+      border-radius: 50%;
+      border: 4px solid var(--blue-light);
+      object-fit: cover;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    }
+
+    @media (max-width: 768px) {
+      .hero-container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-photo img {
+        width: 180px;
+        margin-top: 20px;
+      }
+
+      .hero-text h2 {
+        font-size: 34px;
+      }
+    }
+
+    /* Buttons side by side */
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      margin-top: 25px;
+      flex-wrap: wrap;
+    }
+
+    /* BUTTONS */
+    .btn {
+      background: var(--blue-light);
+      color: var(--dark-text);
+      border-radius: 25px;
+      padding: 12px 30px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: var(--blue-hover);
+      transform: translateY(-2px);
+    }
+
+    /* SECTION TITLE */
+    .title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .title h2 {
+      font-size: 34px;
+      color: var(--blue-light);
+    }
+
+    /* ABOUT */
+    .about p {
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+      line-height: 1.9;
+      opacity: 0.95;
+    }
+
+    /* SKILLS */
+    .skills-container {
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .skill {
+      margin-bottom: 22px;
+    }
+
+    .skill span {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .progress {
+      background: #1e293b;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .progress div {
+      height: 10px;
+      width: 0;
+      background: var(--blue-light);
+      transition: width 1.5s ease;
+    }
+
+    /* PROJECTS */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: var(--card);
+      padding: 25px;
+      border-radius: 18px;
+      border: 1px solid rgba(56,189,248,0.25);
+      position: relative;
+      overflow: hidden;
+      transition: 0.4s;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(56,189,248,0.15);
+      opacity: 0;
+      transition: 0.4s;
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+    }
+
+    .card h3 {
+      color: var(--blue-light);
+      margin-bottom: 10px;
+    }
+
+    /* CONTACT */
+    form {
+      max-width: 500px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input, textarea {
+      padding: 12px;
+      border-radius: 8px;
+      background: #020617;
+      border: 1px solid rgba(56,189,248,0.3);
+      color: var(--text);
+      outline: none;
+    }
+
+    input:focus, textarea:focus {
+      border-color: var(--blue-light);
+      box-shadow: 0 0 8px rgba(56,189,248,0.6);
+    }
+
+    button {
+      padding: 12px;
+      border-radius: 25px;
+      border: none;
+      background: var(--blue-light);
+      color: var(--dark-text);
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: var(--blue-hover);
+      transform: translateY(-2px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #020617;
+      margin-top: 50px;
+      opacity: 0.85;
+    }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 1s;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Anjali</h1>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-container">
+    <div class="hero-text">
+      <h2>Hello, I'm <span>Anjali</span></h2>
+      <p>
+        4th Year Computer Science Engineering student passionate about Developing real world application,
+        Passionate about developing scalable applications, solving real-world problems, 
+        and continuously learning new technologies to create impactful software solutions..
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#projects" class="btn">View Projects</a>
+        <a href="ResumeFinal.pdf" target="_blank" class="btn">View Resume</a>
+      </div>
+    </div>
+
+    <div class="hero-photo">
+      <img src="anjalii.jpg" alt="Anjali Photo">
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="about reveal">
+  <div class="title">
+    <h2>About Me</h2>
+  </div>
+  <p>
+    I am a Computer Science Engineering student with strong fundamentals in programming, problem-solving, and user interface development. I have a keen interest in frontend development and enjoy creating clean, responsive, and interactive web applications focused on usability and modern design.
+
+I have hands-on experience with HTML, CSS, JavaScript, ASP.NET, and SQL Server, along with professional training in ASP.NET and C#. Through academic and personal projects, I have gained experience in building real-world, role-based applications and managing data efficiently.
+
+I am passionate about continuous learning and currently expanding my skills in React and machine learning. I am seeking opportunities to apply my knowledge, grow as a developer, and contribute to impactful, user-centric software solutions.
+</p>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="reveal">
+  <div class="title">
+    <h2>Skills</h2>
+  </div>
+
+  <div class="skills-container">
+    <div class="skill">
+      <span>HTML & CSS</span>
+      <div class="progress"><div data-width="90%"></div></div>
+    </div>
+    <div class="skill">
+      <span>JavaScript</span>
+      <div class="progress"><div data-width="80%"></div></div>
+    </div>
+    <div class="skill">
+      <span>React (Learning)</span>
+      <div class="progress"><div data-width="65%"></div></div>
+    </div>
+    <div class="skill">
+      <span>Problem Solving</span>
+      <div class="progress"><div data-width="85%"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="reveal">
+  <div class="title">
+    <h2>Projects</h2>
+  </div>
+
+  <div class="projects">
+    <div class="card">
+      <h3> Smart Child Immunization Portal </h3>
+      <p style="font-size: 14px; opacity: 0.85; margin-bottom: 8px;">
+    <strong>Tech Stack:</strong> ASP.NET, C#, .NET Framework, HTML, CSS, JavaScript, SQL Server
+  </p>
+
+  <p style="font-size: 14px; opacity: 0.85; margin-bottom: 12px;">
+    <strong>Duration:</strong> July 2025 - November 2025
+  </p>
+
+  <p style="line-height: 1.7; margin-bottom: 12px;">
+    Smart Child Immunization Portal is a role-based web application designed to
+    digitize and streamline the child vaccination process. The platform connects
+    parents, hospitals, and administrators on a single system for efficient
+    immunization management and accurate vaccination tracking.
+  </p>
+
+  <p style="line-height: 1.7; margin-bottom: 12px;">
+    Parents can book vaccination slots and view immunization details, while
+    hospitals securely manage vaccine records and update vaccination statuses.
+    Administrators use a centralized dashboard to monitor system operations and
+    ensure smooth coordination among all stakeholders.
+  </p>
+
+  <p style="line-height: 1.7;">
+    The system includes automated vaccination reminders, secure storage of medical
+    records, and digital certificate generation. These features reduce manual
+    effort, minimize errors, and improve overall immunization workflow efficiency.
+  </p>
+</div>
+
+    <div class="card">
+      <h3>Pesticide Usage Tracker</h3>
+      <p style="font-size: 14px; opacity: 0.85; margin-bottom: 8px;">
+    <strong>Tech Stack:</strong> HTML, CSS, JavaScript, Backend (API), Database
+  </p>
+
+  <p style="font-size: 14px; opacity: 0.85; margin-bottom: 12px;">
+    <strong>Duration:</strong>  October 2025 — December2025
+  </p>
+
+  <p style="line-height: 1.7; margin-bottom: 12px;">
+    Pesticide Usage Tracker is a web-based application developed to monitor and
+    manage pesticide usage in agricultural practices. The system helps farmers
+    and agricultural officers record pesticide application details and track
+    usage patterns to promote safer and more responsible farming.
+  </p>
+
+  <p style="line-height: 1.7; margin-bottom: 12px;">
+    The platform allows users to log pesticide types, quantities, application
+    dates, and crop information. Stored data can be reviewed over time to analyze
+    trends, prevent overuse, and support data-driven decision-making.
+  </p>
+
+  <p style="line-height: 1.7;">
+    By providing structured tracking and historical insights, the system improves
+    compliance with agricultural guidelines, reduces environmental risks, and
+    supports sustainable pesticide management.
+  </p>
+</div>
+
+    <div class="card">
+     <h3>Intelligent Multi-Modal Assessment System for Cleft Lip & Palate</h3>
+
+  <p style="font-size: 14px; opacity: 0.85; margin-bottom: 8px;">
+    <strong>Tech Stack:</strong> Python, PyQt5, Flask, SQLite
+  </p>
+
+  <p style="font-size: 14px; opacity: 0.85; margin-bottom: 12px;">
+    <strong>Duration:</strong> January 2026 – Ongoing
+  </p>
+
+  <p style="line-height: 1.7; margin-bottom: 12px;">
+    This project focuses on developing an intelligent multi-modal assessment
+    system for cleft lip and palate patients using machine learning techniques.
+    The system aims to assist clinicians by providing objective and consistent
+    evaluation through the integration of multiple assessment modalities.
+  </p>
+
+  <p style="line-height: 1.7; margin-bottom: 12px;">
+    The application analyzes facial images, speech characteristics, and clinical
+    parameters to assess patient conditions more accurately. A standalone desktop
+    interface is built using PyQt5, while Flask is used for backend processing and
+    data handling.
+  </p>
+
+  <p style="line-height: 1.7;">
+    By combining visual, audio, and clinical data, the system improves assessment
+    reliability, reduces subjectivity in manual evaluation, and supports better
+    clinical decision-making for cleft lip and palate treatment planning.
+  </p>
+</div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="reveal">
+  <div class="title">
+    <h2>Contact Me</h2>
+  </div>
+
+  <form>
+    <input type="text" placeholder="Your Name" required />
+    <input type="email" placeholder="Your Email" required />
+    <textarea rows="4" placeholder="Your Message"></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+
+<footer>
+  <p>© 2026 Anjali | All Rights Reserved</p>
+</footer>
+
+<script>
+  // Reveal animation
+  const reveals = document.querySelectorAll(".reveal");
+  function revealOnScroll() {
+    reveals.forEach(section => {
+      const top = section.getBoundingClientRect().top;
+      if (top < window.innerHeight - 100) {
+        section.classList.add("active");
+      }
+    });
+  }
+  window.addEventListener("scroll", revealOnScroll);
+
+  // Skill bar animation
+  const bars = document.querySelectorAll(".progress div");
+  function animateSkills() {
+    bars.forEach(bar => {
+      bar.style.width = bar.dataset.width;
+    });
+  }
+  window.addEventListener("scroll", animateSkills);
+</script>
+
+</body>
+</html>
